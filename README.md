@@ -142,6 +142,11 @@ docker compose up -d --build
 ```
 docker run -d   --name kea-dhcp4   --network my_macvlan   -v /opt/kea-config:/etc/kea   -v /opt/kea-data:/var/lib/kea   --cap-add=NET_ADMIN   --cap-add=NET_RAW   docker.cloudsmith.io/isc/docker/kea-dhcp4
 ```
+- 国内加速镜像
+```
+registry.cn-chengdu.aliyuncs.com/foxeleven/dhcpd:kea
+registry.cn-chengdu.aliyuncs.com/foxeleven/kea-dhcp-webui:latest
+```
 ## 安全建议
 
 - `config.json`、`.env` 含凭证，不要提交版本库或放进镜像。
