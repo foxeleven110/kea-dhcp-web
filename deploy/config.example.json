@@ -1,7 +1,7 @@
 {
-  "listen": "127.0.0.1:8080",
-  "kea_url": "http://192.168.6.94:8000",
+  "listen": "0.0.0.0:80",
+  "kea_url": "http://kea-dhcpv4:8000",
   "kea_user": "admin",
-  "kea_pass": "change-me",
+  "kea_pass": "chang-me",
   "open_browser": true
 }
