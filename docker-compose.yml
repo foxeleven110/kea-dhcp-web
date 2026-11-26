@@ -1,20 +1,30 @@
 services:
-  kea-dhcp-go:
-    build: .
-    image: kea-dhcp-go:latest
-    container_name: kea-dhcp-go
+  kea-dhcp-go: #必须保证kea-dhcp已经运行且开启了api的访问接口
+    image: registry.cn-chengdu.aliyuncs.com/foxeleven/kea-dhcp-webui
+    container_name: kea-dhcp-webui
     ports:
-      - "8080:8080"
+      - "8080:80"
     environment:
       TZ: Asia/Shanghai
-      KEA_LISTEN: 0.0.0.0:8080
-      KEA_URL: ${KEA_URL:-http://192.168.6.94:8000}
+      KEA_LISTEN: 0.0.0.0:80
+      KEA_URL: ${KEA_URL:-http://kea-dchp4:8000}
       KEA_USER: ${KEA_USER:-admin}
       KEA_PASS: ${KEA_PASS:?请在 .env 中设置 KEA_PASS}
       KEA_OPEN_BROWSER: "false"
     volumes:
       - kea-data:/data
     restart: unless-stopped
-
 volumes:
   kea-data:
+services:
+  kea-dhcp4:
+    image: registry.cn-chengdu.aliyuncs.com/foxeleven/dhcpd:kea
+    container_name: kea-dhcp4
+    restart: unless-stopped
+    network_mode: host  #或者使用macVlan，把host换成你的macvlan-name
+    volumes:
+      - /opt/kea-config:/etc/kea
+      - /opt/kea-data:/var/lib/kea
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
