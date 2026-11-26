@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kea DHCP 管理台</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">K</div>
+      <div>
+        <div class="brand-name">Kea DHCP</div>
+        <div class="brand-sub">管理控制台</div>
+      </div>
+    </div>
+    <nav class="nav" id="nav">
+      <a href="#overview" data-view="overview"><span>概览</span></a>
+      <a href="#subnets" data-view="subnets"><span>子网与地址池</span></a>
+      <a href="#leases" data-view="leases"><span>租约管理</span></a>
+      <a href="#config" data-view="config"><span>配置管理</span></a>
+      <a href="#stats" data-view="stats"><span>运行统计</span></a>
+      <a href="#console" data-view="console"><span>命令控制台</span></a>
+      <a href="#server" data-view="server"><span>服务控制</span></a>
+      <a href="#settings" data-view="settings"><span>连接设置</span></a>
+    </nav>
+    <div class="sidebar-foot">
+      <div class="dot" id="footDot"></div>
+      <div class="foot-text">
+        <div id="footUrl">未连接</div>
+        <div class="muted" id="footVersion">Kea Control Agent</div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <h1 id="viewTitle">概览</h1>
+        <p id="viewSub" class="sub">Kea DHCP 服务运行概况</p>
+      </div>
+      <div class="topbar-right">
+        <span class="badge" id="connBadge">检测中…</span>
+        <button class="btn btn-ghost" id="btnRefresh">刷新</button>
+      </div>
+    </header>
+    <section id="view" class="view"></section>
+  </main>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<div id="modal" class="modal hidden">
+  <div class="modal-card">
+    <h3 id="modalTitle">确认</h3>
+    <div id="modalBody" class="modal-body"></div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="modalCancel">取消</button>
+      <button class="btn btn-danger" id="modalOk">确认</button>
+    </div>
+  </div>
+</div>
+
+<script src="/core.js"></script>
+<script src="/subnets.js"></script>
+<script src="/leases.js"></script>
+<script src="/config.js"></script>
+<script src="/stats.js"></script>
+<script src="/console.js"></script>
+<script src="/settings.js"></script>
+<script>K.boot();</script>
+</body>
+</html>
