@@ -23,8 +23,8 @@ services:
     restart: unless-stopped
     network_mode: host  #或者使用macVlan，把host换成你的macvlan-name
     volumes:
-      - /opt/kea-config:/etc/kea
-      - /opt/kea-data:/var/lib/kea
+      - ./kea-config:/etc/kea
+      - ./kea-data:/var/lib/kea
     cap_add:
       - NET_ADMIN
       - NET_RAW
